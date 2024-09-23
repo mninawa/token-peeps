@@ -1,0 +1,52 @@
+name: Test Action (Replace Tokens)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node-version: [ 20.x ]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set Up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Replace Tokens ( <<<<BlobDevelopment Example  >>>> )
+      uses: BlobDevelopment/copy-and-replace-tokens@v2
+      with:
+        source: 'test/base.agathe.conf.template'
+        target: './test/cvp.agathe.conf'
+      env:
+        SAP_NAME: CVP
+        sap_remote_programid: AGT_COSMICINT_CVP010
+        host: pcvpcs00.sap.azure.cloud.bmw
+        gwserv: 3300
+        msserv: 3600
+        repository_destination:  CVP
+        RCVPRN: CVPCLNT010
+        RCVPRT: LS
+        SNDPRN: AGATHEPRD
+        SNDPOR: AGATHEPRD
+        SNDPRT: LS
+        kafka_bootstrap_servers: lkc-2vmym-4kxv6.westeurope.azure.glb.confluent.cloud:9092
+        kafka_consumer_group_id: bmw.cosmicintlfsm.connect.agathe.cvp
+        kafka_streams_application_id: bmw.cosmicintlfsm.connect.agathe.streams.cvp
+        kafka_pipelines_name : COSMICINTLFSM
+        kafka_pipelines_topic: cosmicintlfsm
+
+    - name: checkin updates
+      run: |
+        git config user.name "$(git log -n 1 --pretty=format:%an)"
+        git config user.email "$(git log -n 1 --pretty=format:%ae)"
+        git add .
+        git commit -m " latest changes"
+        git push

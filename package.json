@@ -1,0 +1,34 @@
+{
+  "name": "replace-tokens",
+  "version": "v1.2",
+  "description": "Replaces tokens in the text or code files with replacement values during the execution of the CI/CD process.",
+  "main": "index.js",
+  "scripts": {
+    "cleanUp": "true",
+    "build": "ncc build index.js",
+    "test": "mocha",
+    "coverage": "nyc --reporter=lcov npm test && codecov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhinavminhas/replace-tokens.git"
+  },
+  "keywords": [],
+  "author": "Abhinav Minhas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abhinavminhas/replace-tokens/issues"
+  },
+  "homepage": "https://github.com/abhinavminhas/replace-tokens#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
+    "chai": "^4.3.7",
+    "codecov": "^3.8.3",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  }
+}

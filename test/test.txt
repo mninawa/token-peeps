@@ -1,0 +1,1 @@
+Hi __NAME__. My favourite colour is __COLOUR__.

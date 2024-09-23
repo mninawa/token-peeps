@@ -1,0 +1,20 @@
+name: 'Replace Tokens (abhinavminhas)'
+description: 'Replaces tokens in the text or code files with replacement values during the execution of the CI/CD process.'
+author: Abhinav Minhas
+branding:
+  icon: 'edit'
+  color: 'black'
+inputs:
+  files:
+    description: 'File names (path included), comma-separated for multiple files.'
+    required: true
+  replacements:
+    description: 'Token (to be replaced) & value comma-separated pairs (TOKEN=value).'
+    required: true
+  delimiter:
+    description: 'Defines separator/delimiter to be used, default value is comma (,).'
+    required: false
+    default: ','
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
