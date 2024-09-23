@@ -47,7 +47,7 @@ jobs:
 
     - name: checkin updates
       run: |
-        git branch --set-upstream-to=origin/master
+     
         git config user.name "$(git log -n 1 --pretty=format:%an)"
         git config user.email "$(git log -n 1 --pretty=format:%ae)"
         git add .
