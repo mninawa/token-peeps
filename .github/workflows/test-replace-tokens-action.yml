@@ -15,8 +15,8 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
-        repository: origin/main
-        path: main
+        repository: origin/master
+        path: master
 
     - name: Set Up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
