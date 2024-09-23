@@ -14,7 +14,11 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-    - run: git branch   # gives 'main' branch
+      with:
+          sparse-checkout: |
+            .
+            /*
+            !renv/
 
     - name: Set Up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
