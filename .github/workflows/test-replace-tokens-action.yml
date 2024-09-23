@@ -14,10 +14,7 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        repository: origin/master
-        path: master
+    - run: git branch   # gives 'main' branch
 
     - name: Set Up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
