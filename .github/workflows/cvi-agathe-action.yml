@@ -43,6 +43,11 @@ jobs:
         kafka_pipelines_name : COSMICINTLFSM
         kafka_pipelines_topic: cosmicintlfsm
 
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: Release
+        
     - name: checkin updates
       run: |
         git config user.name "$(git log -n 1 --pretty=format:%an)"
